@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250414094148 extends AbstractMigration
+final class Version20250414095031 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,10 +21,16 @@ final class Version20250414094148 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            CREATE TABLE book (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, editor_id INTEGER NOT NULL, title VARCHAR(255) NOT NULL, isbn VARCHAR(255) NOT NULL, cover VARCHAR(255) NOT NULL, edited_at DATETIME NOT NULL, plot CLOB NOT NULL, page_number INTEGER NOT NULL, status VARCHAR(255) NOT NULL, CONSTRAINT FK_CBE5A3316995AC4C FOREIGN KEY (editor_id) REFERENCES editor (id) NOT DEFERRABLE INITIALLY IMMEDIATE)
+            CREATE TABLE author (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, date_of_birth DATETIME NOT NULL, date_of_death DATETIME DEFAULT NULL, nationality VARCHAR(255) DEFAULT NULL)
+        SQL);
+        $this->addSql(<<<'SQL'
+            CREATE TABLE book (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, editor_id INTEGER NOT NULL, author_id INTEGER NOT NULL, title VARCHAR(255) NOT NULL, isbn VARCHAR(255) NOT NULL, cover VARCHAR(255) NOT NULL, edited_at DATETIME NOT NULL, plot CLOB NOT NULL, page_number INTEGER NOT NULL, status VARCHAR(255) NOT NULL, CONSTRAINT FK_CBE5A3316995AC4C FOREIGN KEY (editor_id) REFERENCES editor (id) NOT DEFERRABLE INITIALLY IMMEDIATE, CONSTRAINT FK_CBE5A331F675F31B FOREIGN KEY (author_id) REFERENCES author (id) NOT DEFERRABLE INITIALLY IMMEDIATE)
         SQL);
         $this->addSql(<<<'SQL'
             CREATE INDEX IDX_CBE5A3316995AC4C ON book (editor_id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            CREATE INDEX IDX_CBE5A331F675F31B ON book (author_id)
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE comment (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, book_id INTEGER NOT NULL, name VARCHAR(255) NOT NULL, email CLOB NOT NULL, created_at DATETIME NOT NULL, published_at DATETIME NOT NULL, status VARCHAR(255) NOT NULL, content CLOB NOT NULL, CONSTRAINT FK_9474526C16A2B381 FOREIGN KEY (book_id) REFERENCES book (id) NOT DEFERRABLE INITIALLY IMMEDIATE)
@@ -55,6 +61,9 @@ final class Version20250414094148 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql(<<<'SQL'
+            DROP TABLE author
+        SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE book
         SQL);
