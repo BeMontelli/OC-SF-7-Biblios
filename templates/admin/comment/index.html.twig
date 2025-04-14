@@ -25,8 +25,8 @@
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.name }}</td>
                 <td>{{ comment.email }}</td>
-                <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ comment.publishedAt ? comment.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ comment.createdAt ? comment.createdAt|date('d/m/Y H:i') : '' }}</td>
+                <td>{{ comment.publishedAt ? comment.publishedAt|date('d/m/Y H:i') : '' }}</td>
                 <td>{{ comment.status }}</td>
                 <td>{{ comment.content }}</td>
                 <td>

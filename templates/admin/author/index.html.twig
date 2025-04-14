@@ -22,8 +22,8 @@
             <tr>
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
-                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('d/m/Y H:i') : '' }}</td>
+                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('d/m/Y H:i') : '' }}</td>
                 <td>{{ author.nationality }}</td>
                 <td>
                     <a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
