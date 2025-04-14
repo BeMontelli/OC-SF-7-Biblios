@@ -38,7 +38,15 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ book.status }}</td>
+                <td>{{ book.status.name }}</td>
+            </tr>
+            <tr>
+                <th>Editor</th>
+                <td>{{  book.editor.name }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{  book.author.name }}</td>
             </tr>
         </tbody>
     </table>

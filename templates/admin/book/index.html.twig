@@ -14,7 +14,6 @@
                 <th>Isbn</th>
                 <th>Cover</th>
                 <th>EditedAt</th>
-                <th>Plot</th>
                 <th>PageNumber</th>
                 <th>Status</th>
                 <th>actions</th>
@@ -28,9 +27,8 @@
                 <td>{{ book.isbn }}</td>
                 <td>{{ book.cover }}</td>
                 <td>{{ book.editedAt ? book.editedAt|date('d/m/Y H:i') : '' }}</td>
-                <td>{{ book.plot }}</td>
                 <td>{{ book.pageNumber }}</td>
-                <td>{{ book.status }}</td>
+                <td>{{ book.status.name }}</td>
                 <td>
                     <a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
                     <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>

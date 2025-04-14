@@ -26,7 +26,7 @@ class CommentType extends AbstractType
             ->add('content')
             ->add('book', EntityType::class, [
                 'class' => Book::class,
-                'choice_label' => 'id',
+                'choice_label' => 'title',
             ])
         ;
     }
