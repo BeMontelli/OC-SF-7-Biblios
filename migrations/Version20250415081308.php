@@ -24,9 +24,6 @@ final class Version20250415081308 extends AbstractMigration
             CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
             , password VARCHAR(255) NOT NULL)
         SQL);
-        $this->addSql(<<<'SQL'
-            CREATE UNIQUE INDEX UNIQ_IDENTIFIER_USERNAME ON user (username)
-        SQL);
     }
 
     public function down(Schema $schema): void
